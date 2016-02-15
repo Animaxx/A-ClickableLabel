@@ -17,6 +17,7 @@
 		691E83D21C6B98AF001A16F5 /* RootTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83D11C6B98AF001A16F5 /* RootTableController.m */; };
 		691E83DA1C6B99D3001A16F5 /* Demo1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83D91C6B99D3001A16F5 /* Demo1Controller.m */; };
 		691E83E01C6D3DD3001A16F5 /* DemoDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83DF1C6D3DD3001A16F5 /* DemoDisplayView.m */; };
+		691E83FD1C6F93F2001A16F5 /* Demo2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83FC1C6F93F2001A16F5 /* Demo2Controller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +29,7 @@
 		691E83B01C6929FB001A16F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		691E83B31C6929FB001A16F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		691E83B51C6929FB001A16F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		691E83CA1C69A8C6001A16F5 /* A_ClickableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A_ClickableLabel.h; path = ../A_ClickableLabel/A_ClickableLabel.h; sourceTree = "<group>"; };
+		691E83CA1C69A8C6001A16F5 /* A_ClickableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A_ClickableLabel.h; path = A_ClickableLabel/A_ClickableLabel.h; sourceTree = "<group>"; };
 		691E83CB1C69A8C6001A16F5 /* A_ClickableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = A_ClickableLabel.m; path = A_ClickableLabel/A_ClickableLabel.m; sourceTree = "<group>"; };
 		691E83CD1C6A9339001A16F5 /* A_AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A_AttributedStringBuilder.h; path = A_ClickableLabel/A_AttributedStringBuilder.h; sourceTree = "<group>"; };
 		691E83CE1C6A9339001A16F5 /* A_AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = A_AttributedStringBuilder.m; path = A_ClickableLabel/A_AttributedStringBuilder.m; sourceTree = "<group>"; };
@@ -38,6 +39,8 @@
 		691E83D91C6B99D3001A16F5 /* Demo1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo1Controller.m; path = Demos/Demo1Controller.m; sourceTree = "<group>"; };
 		691E83DE1C6D3DD3001A16F5 /* DemoDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoDisplayView.h; path = Demos/DemoDisplayView.h; sourceTree = "<group>"; };
 		691E83DF1C6D3DD3001A16F5 /* DemoDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoDisplayView.m; path = Demos/DemoDisplayView.m; sourceTree = "<group>"; };
+		691E83FB1C6F93F2001A16F5 /* Demo2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo2Controller.h; path = Demos/Demo2Controller.h; sourceTree = "<group>"; };
+		691E83FC1C6F93F2001A16F5 /* Demo2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo2Controller.m; path = Demos/Demo2Controller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 			children = (
 				691E83D41C6B9977001A16F5 /* NavigationPages */,
 				691E83D31C6B9958001A16F5 /* Demo1 */,
+				691E83F71C6F9354001A16F5 /* Demo2 */,
 				691E83A41C6929FB001A16F5 /* Supporting Files */,
 			);
 			path = A_ClickableLabel_Demo;
@@ -89,6 +93,7 @@
 		691E83C91C69A895001A16F5 /* A_ClickableLabel */ = {
 			isa = PBXGroup;
 			children = (
+				691E83CA1C69A8C6001A16F5 /* A_ClickableLabel.h */,
 				691E83CB1C69A8C6001A16F5 /* A_ClickableLabel.m */,
 				691E83CD1C6A9339001A16F5 /* A_AttributedStringBuilder.h */,
 				691E83CE1C6A9339001A16F5 /* A_AttributedStringBuilder.m */,
@@ -101,7 +106,6 @@
 			children = (
 				691E83DE1C6D3DD3001A16F5 /* DemoDisplayView.h */,
 				691E83DF1C6D3DD3001A16F5 /* DemoDisplayView.m */,
-				691E83CA1C69A8C6001A16F5 /* A_ClickableLabel.h */,
 				691E83D81C6B99D3001A16F5 /* Demo1Controller.h */,
 				691E83D91C6B99D3001A16F5 /* Demo1Controller.m */,
 			);
@@ -121,6 +125,15 @@
 				691E83B51C6929FB001A16F5 /* Info.plist */,
 			);
 			name = NavigationPages;
+			sourceTree = "<group>";
+		};
+		691E83F71C6F9354001A16F5 /* Demo2 */ = {
+			isa = PBXGroup;
+			children = (
+				691E83FB1C6F93F2001A16F5 /* Demo2Controller.h */,
+				691E83FC1C6F93F2001A16F5 /* Demo2Controller.m */,
+			);
+			name = Demo2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +214,7 @@
 				691E83A91C6929FB001A16F5 /* AppDelegate.m in Sources */,
 				691E83A61C6929FB001A16F5 /* main.m in Sources */,
 				691E83CC1C69A8C6001A16F5 /* A_ClickableLabel.m in Sources */,
+				691E83FD1C6F93F2001A16F5 /* Demo2Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

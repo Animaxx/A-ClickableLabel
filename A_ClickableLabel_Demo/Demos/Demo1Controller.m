@@ -24,13 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.demoLabel setSentence:@"A fractal is %@ set that exhibits a repeating pattern that displays at every scale." withBuilder:[A_AttributedStringBuilder createWithSystemFontSize:16] andElements:
-     
-     @[[A_ClickableElement create:@"a natural phenomenon" withBuilder:[[A_AttributedStringBuilder createWithSystemFontSize:14] setUnderline:YES] andClick:^(A_ClickableElement *element, A_ClickableLabel *sender) {
-            element.elementWords = @"a mathematical";
-            [sender renderLabel];
-        }]
-    ]];
+    
+    A_ClickableElement *element = [A_ClickableElement create:@"a natural phenomenon" withBuilder:[[A_AttributedStringBuilder createWithSystemFontSize:14] setUnderline:YES] andClick:^(A_ClickableElement *element, A_ClickableLabel *sender, A_ClickedAdditionalInformation *info) {
+        element.elementWords = @"a mathematical";
+        [sender renderLabel];
+    }];
+    
+    [self.demoLabel setSentence:@"A fractal is %@ set that exhibits a repeating pattern that displays at every scale." withBuilder:[A_AttributedStringBuilder createWithSystemFontSize:16] andElements: @[element]];
 }
 
 - (IBAction)onClick:(id)sender {

@@ -32,6 +32,9 @@
 
 @end
 
+@implementation A_ClickedAdditionalInformation
+
+@end
 
 @implementation A_ClickableLabel {
     NSString                            *_contentSentence;
@@ -80,25 +83,28 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
-    CFIndex index = [self characterIndexAtPoint:[touch locationInView:self]];
-    if (index == NSNotFound) return;
+    A_ClickedAdditionalInformation *info = [self characterIndexAtPoint:[touch locationInView:self]];
+    if (info.charIndexInSentence == NSNotFound) return;
     
     for (A_ClickableElement *item in _elements) {
-        if (item.changableRange.location <= index && (item.changableRange.location + item.changableRange.length) >= index && item.touchEvent) {
+        if (item.changableRange.location <= info.charIndexInSentence && (item.changableRange.location + item.changableRange.length) >= info.charIndexInSentence && item.touchEvent) {
             
-            item.touchEvent(item, self);
+            item.touchEvent(item, self, info);
             break;
         }
     }
 }
 
 #pragma mark - Helping methods
-- (CFIndex)characterIndexAtPoint:(CGPoint)p {
+- (A_ClickedAdditionalInformation *)characterIndexAtPoint:(CGPoint)p {
     // * This method is reference from TTTAttributedLabel
     // https://github.com/TTTAttributedLabel/TTTAttributedLabel/blob/master/TTTAttributedLabel/TTTAttributedLabel.m
     
+    A_ClickedAdditionalInformation *info = [[A_ClickedAdditionalInformation alloc] init];
+    
     if (!CGRectContainsPoint(self.bounds, p)) {
-        return NSNotFound;
+        info.charIndexInSentence = NSNotFound;
+        return info;
     }
     
     CGRect textRect = [self textRectForBounds:self.bounds limitedToNumberOfLines:self.numberOfLines];
@@ -112,7 +118,8 @@
     }
     
     if (!CGRectContainsPoint(textRect, p)) {
-        return NSNotFound;
+        info.charIndexInSentence = NSNotFound;
+        return info;
     }
     
     // Offset tap coordinates by textRect origin to make them relative to the origin of frame
@@ -126,7 +133,8 @@
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, (CFIndex)[self.attributedText length]), path, NULL);
     if (frame == NULL) {
         CFRelease(path);
-        return NSNotFound;
+        info.charIndexInSentence = NSNotFound;
+        return info;
     }
     
     CFArrayRef lines = CTFrameGetLines(frame);
@@ -134,7 +142,8 @@
     if (numberOfLines == 0) {
         CFRelease(frame);
         CFRelease(path);
-        return NSNotFound;
+        info.charIndexInSentence = NSNotFound;
+        return info;
     }
     
     CFIndex idx = NSNotFound;
@@ -142,9 +151,14 @@
     CGPoint lineOrigins[numberOfLines];
     CTFrameGetLineOrigins(frame, CFRangeMake(0, numberOfLines), lineOrigins);
     
+    CGFloat totalLineHeight = 0.0f;
+    
     for (CFIndex lineIndex = 0; lineIndex < numberOfLines; lineIndex++) {
         CGPoint lineOrigin = lineOrigins[lineIndex];
         CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
+        
+        CGRect lineBounds = CTLineGetBoundsWithOptions(line, kCTLineBoundsUseOpticalBounds);
+        totalLineHeight += lineBounds.size.height;
         
         // Get bounding information of line
         CGFloat ascent = 0.0f, descent = 0.0f, leading = 0.0f;
@@ -175,6 +189,10 @@
                 // Convert CT coordinates to line-relative coordinates
                 CGPoint relativePoint = CGPointMake(p.x - lineOrigin.x, p.y - lineOrigin.y);
                 idx = CTLineGetStringIndexForPosition(line, relativePoint);
+                
+                info.locateNumberOfLine = (NSInteger)lineIndex + 1;
+                info.clickedPoint = CGPointMake(relativePoint.x, totalLineHeight);
+                
                 break;
             }
         }
@@ -183,7 +201,9 @@
     CFRelease(frame);
     CFRelease(path);
     
-    return idx;
+    info.charIndexInSentence = idx;
+    return info;
 }
+
 
 @end

@@ -10,19 +10,30 @@
 
 @class A_ClickableElement;
 @class A_ClickableLabel;
-typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_ClickableLabel *sender);
+@class A_ClickedAdditionalInformation;
+
+typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_ClickableLabel *sender, A_ClickedAdditionalInformation *info);
 
 @interface A_ClickableElement : NSObject
 
 @property (strong, nonatomic) NSDictionary<NSString *, id> *stringAttributes;
 @property (strong, nonatomic) NSString *elementWords;
-@property (assign, nonatomic) aClickableLabelTouchEvent touchEvent;
+@property (copy, nonatomic) aClickableLabelTouchEvent touchEvent;
 
 + (A_ClickableElement *)create:(NSString *)words withAttributes:(NSDictionary<NSString *, id> *)attributes andClick:(aClickableLabelTouchEvent)touchEvent;
 + (A_ClickableElement *)create:(NSString *)words withBuilder:(A_AttributedStringBuilder *)builder andClick:(aClickableLabelTouchEvent)touchEvent;
 
 @end
 
+
+@interface A_ClickedAdditionalInformation : NSObject
+
+@property (strong, nonatomic) NSString *clickedWord;
+@property (nonatomic) NSInteger locateNumberOfLine;
+@property (nonatomic) CGPoint clickedPoint;
+@property (assign, nonatomic) CFIndex charIndexInSentence;
+
+@end
 
 @interface A_ClickableLabel : UILabel
 
