@@ -31,7 +31,6 @@
     [self.view addSubview:_explainArea];
     
     noteLabel = [[UILabel alloc] init];
-//    noteLabel.text = [@" Note:%@", ]; //@" Note: ";
     noteLabel.font = [UIFont systemFontOfSize:12];
     noteLabel.textColor = [UIColor whiteColor];
     [_explainArea addSubview:noteLabel];
