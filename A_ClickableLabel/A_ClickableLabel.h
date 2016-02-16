@@ -28,7 +28,7 @@ typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_Clickabl
 
 @interface A_ClickedAdditionalInformation : NSObject
 
-@property (strong, nonatomic) NSString *clickedWord;
+@property (strong, nonatomic) NSString *selectedWord;
 @property (nonatomic) NSInteger locateNumberOfLine;
 @property (nonatomic) CGPoint clickedPoint;
 @property (assign, nonatomic) CFIndex charIndexInSentence;

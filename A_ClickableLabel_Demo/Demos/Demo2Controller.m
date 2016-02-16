@@ -18,6 +18,7 @@
 @end
 
 @implementation Demo2Controller {
+    UILabel *noteLabel;
 }
 
 - (void)viewDidLoad {
@@ -29,16 +30,19 @@
     
     [self.view addSubview:_explainArea];
     
-    UILabel *noteLabel = [[UILabel alloc] init];
-    noteLabel.text = @"Note...";
+    noteLabel = [[UILabel alloc] init];
+//    noteLabel.text = [@" Note:%@", ]; //@" Note: ";
+    noteLabel.font = [UIFont systemFontOfSize:12];
     noteLabel.textColor = [UIColor whiteColor];
     [_explainArea addSubview:noteLabel];
     
-    
+    noteLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
     
     aClickableLabelTouchEvent touchEvent = ^(A_ClickableElement *element, A_ClickableLabel *sender, A_ClickedAdditionalInformation *info) {
         
-        self.explainArea.frame = CGRectMake(sender.frame.origin.x + info.clickedPoint.x , sender.frame.origin.y + info.clickedPoint.y, 100, 30);
+        self.explainArea.frame = CGRectMake(sender.frame.origin.x + info.clickedPoint.x - 30.0f, sender.frame.origin.y + info.clickedPoint.y, 140, 30);
+        [noteLabel setText:[NSString stringWithFormat:@" Note:%@", info.selectedWord]];
+        
     };
     
     A_ClickableElement *phenomenon = [A_ClickableElement create:@"phenomenon" withBuilder:[[A_AttributedStringBuilder createWithSystemFontSize:14] setUnderline:YES] andClick:touchEvent];
@@ -54,7 +58,7 @@
 }
 
 - (IBAction)onClickBackgound:(id)sender {
-        self.explainArea.frame = CGRectMake(0,0,0,0);
+    self.explainArea.frame = CGRectMake(0,0,0,0);
 }
 
 @end

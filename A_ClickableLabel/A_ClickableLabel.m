@@ -201,8 +201,31 @@
     CFRelease(frame);
     CFRelease(path);
     
+    NSRange range = [self getWordRange:idx];
+    info.selectedWord = [self.text substringWithRange:range];
     info.charIndexInSentence = idx;
     return info;
+}
+- (NSRange)getWordRange:(CFIndex)index {
+    NSString *string = [self.text copy];
+    
+    NSCharacterSet *cset = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    
+    NSRange end = [string rangeOfCharacterFromSet:cset options:0 range:NSMakeRange(index, string.length - index)];
+    NSRange front = [string rangeOfCharacterFromSet:cset options:NSBackwardsSearch range:NSMakeRange(0, index)];
+    
+//    NSRange end = [string rangeOfString:@" " options:0 range:NSMakeRange(index, string.length - index)];
+//    NSRange front = [string rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, index)];
+    
+    if (front.location == NSNotFound) {
+        front.location = 0;
+    }
+    
+    if (end.location == NSNotFound) {
+        end.location = string.length;
+    }
+    
+    return NSMakeRange(front.location, end.location-front.location);
 }
 
 
