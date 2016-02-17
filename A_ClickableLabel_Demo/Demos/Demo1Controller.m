@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet A_ClickableLabel *demoLabel;
 @property (weak, nonatomic) IBOutlet DemoDisplayView *demoView;
 
-
 @end
 
 @implementation Demo1Controller
@@ -24,10 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     A_ClickableElement *element = [A_ClickableElement create:@"a natural phenomenon" withBuilder:[[A_AttributedStringBuilder createWithSystemFontSize:14] setUnderline:YES] andClick:^(A_ClickableElement *element, A_ClickableLabel *sender, A_ClickedAdditionalInformation *info) {
+        
         element.elementWords = @"a mathematical";
-        [sender renderLabel];
+        
     }];
     
     [self.demoLabel setSentence:@"A fractal is %@ set that exhibits a repeating pattern that displays at every scale." withBuilder:[A_AttributedStringBuilder createWithSystemFontSize:16] andElements: @[element]];

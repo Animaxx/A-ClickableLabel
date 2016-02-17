@@ -61,6 +61,32 @@
     return self;
 }
 
+- (A_AttributedStringBuilder *)setForegroundColor:(UIColor *)color {
+    [attributed setObject:color forKey:NSForegroundColorAttributeName];
+    return self;
+}
+- (A_AttributedStringBuilder *)setBackgroundColor:(UIColor *)color {
+    [attributed setObject:color forKey:NSBackgroundColorAttributeName];
+    return self;
+}
+- (A_AttributedStringBuilder *)setStrokeColor:(UIColor *)color {
+    [attributed setObject:color forKey:NSStrokeColorAttributeName];
+    return self;
+}
+- (A_AttributedStringBuilder *)setBaselineOffset:(CGFloat)offest {
+    [attributed setObject:@(offest) forKey:NSBaselineOffsetAttributeName];
+    return self;
+}
+- (A_AttributedStringBuilder *)setUnderlineColor:(UIColor *)color {
+    [attributed setObject:color forKey:NSUnderlineColorAttributeName];
+    return self;
+}
+- (A_AttributedStringBuilder *)setExpansion:(CGFloat)offest {
+    [attributed setObject:@(offest) forKey:NSExpansionAttributeName];
+    return self;
+}
+
+
 - (NSDictionary<NSString *, id> *)getStringAttributes {
     return [attributed copy];
 }

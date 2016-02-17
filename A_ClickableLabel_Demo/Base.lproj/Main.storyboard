@@ -62,6 +62,29 @@
                                             <segue destination="CtX-9B-1gL" kind="push" id="KsY-2I-vt1"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="eN4-lE-zvi">
+                                        <rect key="frame" x="0.0" y="152" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eN4-lE-zvi" id="kw4-Nf-OXn">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2I-St-PgP">
+                                                    <rect key="frame" x="257" y="13.5" width="53" height="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="r2I-St-PgP" firstAttribute="centerX" secondItem="kw4-Nf-OXn" secondAttribute="centerX" id="ARA-qs-t1e"/>
+                                                <constraint firstItem="r2I-St-PgP" firstAttribute="centerY" secondItem="kw4-Nf-OXn" secondAttribute="centerY" id="B8i-q3-5wd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GP6-iM-bgM" kind="push" id="Th9-aI-5Rx"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -132,7 +155,7 @@
             </objects>
             <point key="canvasLocation" x="1452" y="-349"/>
         </scene>
-        <!--Demo2 Controller-->
+        <!--DEMO 2-->
         <scene sceneID="IXf-JY-vEp">
             <objects>
                 <viewController storyboardIdentifier="Demo2Controller" id="CtX-9B-1gL" customClass="Demo2Controller" sceneMemberID="viewController">
@@ -168,14 +191,56 @@
                             <constraint firstAttribute="trailing" secondItem="3mb-m4-smd" secondAttribute="trailing" id="X0M-sG-spM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="NGE-aH-vhb"/>
+                    <navigationItem key="navigationItem" title="DEMO 2" id="NGE-aH-vhb"/>
                     <connections>
                         <outlet property="demoLabel" destination="jb2-dG-agV" id="Ai3-fR-eF7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oX6-DA-B4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1452" y="320"/>
+            <point key="canvasLocation" x="1452" y="306"/>
+        </scene>
+        <!--DEMO 3-->
+        <scene sceneID="GJi-YZ-LUl">
+            <objects>
+                <viewController storyboardIdentifier="Demo3Controller" id="GP6-iM-bgM" customClass="Demo3Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qnl-8b-ZGJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="bfg-bP-5P7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gpN-0y-ivf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t90-u6-U3m">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLY-pp-6c6" customClass="A_ClickableLabel">
+                                <rect key="frame" x="30" y="124" width="540" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tLY-pp-6c6" firstAttribute="leading" secondItem="gpN-0y-ivf" secondAttribute="leading" constant="30" id="GV4-ZC-ZXr"/>
+                            <constraint firstItem="tLY-pp-6c6" firstAttribute="top" secondItem="qnl-8b-ZGJ" secondAttribute="bottom" constant="60" id="K3m-HX-xvW"/>
+                            <constraint firstAttribute="trailing" secondItem="tLY-pp-6c6" secondAttribute="trailing" constant="30" id="Zun-Go-3o6"/>
+                            <constraint firstItem="bfg-bP-5P7" firstAttribute="top" secondItem="t90-u6-U3m" secondAttribute="bottom" id="g07-pz-E3L"/>
+                            <constraint firstItem="t90-u6-U3m" firstAttribute="top" secondItem="qnl-8b-ZGJ" secondAttribute="bottom" id="hNb-MI-dFp"/>
+                            <constraint firstAttribute="trailing" secondItem="t90-u6-U3m" secondAttribute="trailing" id="rDq-AX-MLq"/>
+                            <constraint firstItem="t90-u6-U3m" firstAttribute="leading" secondItem="gpN-0y-ivf" secondAttribute="leading" id="rGJ-PQ-E4B"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="DEMO 3" id="egs-xj-RzM"/>
+                    <connections>
+                        <outlet property="demoLabel" destination="tLY-pp-6c6" id="EiF-xy-rSS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XVA-VK-mWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1452" y="956"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tBo-wd-cRq">

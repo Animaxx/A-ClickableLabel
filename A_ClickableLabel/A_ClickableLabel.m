@@ -30,6 +30,13 @@
     return [self create:words withAttributes:[builder getStringAttributes] andClick:touchEvent];
 }
 
++ (A_ClickableElement *)create:(NSString *)words withAttributes:(NSDictionary<NSString *, id> *)attributes {
+    return [self create:words withAttributes:attributes andClick:nil];
+}
++ (A_ClickableElement *)create:(NSString *)words withBuilder:(A_AttributedStringBuilder *)builder {
+    return [self create:words withBuilder:builder andClick:nil];
+}
+
 @end
 
 @implementation A_ClickedAdditionalInformation
@@ -42,15 +49,6 @@
     NSArray<A_ClickableElement *>       *_elements;
 }
 
-- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElements:(NSArray<A_ClickableElement *> *)elements {
-    self.userInteractionEnabled = YES;
-    
-    _contentSentence = sentence;
-    _elements = elements;
-    _attributes = [builder getStringAttributes];
-    
-    [self renderLabel];
-}
 - (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElements:(NSArray<A_ClickableElement *> *)elements {
     self.userInteractionEnabled = YES;
     
@@ -60,13 +58,41 @@
     
     [self renderLabel];
 }
+- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElements:(NSArray<A_ClickableElement *> *)elements {
+    [self setSentence:sentence withAttributes:[builder getStringAttributes] andElements:elements];
+}
+
+- (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElement:(A_ClickableElement *)element, ... {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    va_list args;
+    va_start(args, element);
+    for (A_ClickableElement *arg = element; arg != nil; arg = va_arg(args, A_ClickableElement *)) {
+        [array addObject:arg];
+    }
+    va_end(args);
+    
+    [self setSentence:sentence withAttributes:stringAttributes andElements:array];
+}
+- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElement:(A_ClickableElement *)element, ... {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    va_list args;
+    va_start(args, element);
+    for (A_ClickableElement *arg = element; arg != nil; arg = va_arg(args, A_ClickableElement *)) {
+        [array addObject:arg];
+    }
+    va_end(args);
+    
+    [self setSentence:sentence withBuilder:builder andElements:array];
+}
 
 - (void)renderLabel {
     // calculate the range for each element words
     NSString *content = [_contentSentence copy];
     for (int i = 0; i < _elements.count; i++) {
         NSRange range = [content rangeOfString:@"%@"];
-        content = [content stringByReplacingCharactersInRange:range  withString:_elements[i].elementWords];
+        content = [content stringByReplacingCharactersInRange:range withString:_elements[i].elementWords];
 
         range.length = _elements[i].elementWords.length;
         _elements[i].changableRange = range;
@@ -90,6 +116,7 @@
         if (item.changableRange.location <= info.charIndexInSentence && (item.changableRange.location + item.changableRange.length) >= info.charIndexInSentence && item.touchEvent) {
             
             item.touchEvent(item, self, info);
+            [self renderLabel];
             break;
         }
     }
@@ -191,7 +218,7 @@
                 idx = CTLineGetStringIndexForPosition(line, relativePoint);
                 
                 info.locateNumberOfLine = (NSInteger)lineIndex + 1;
-                info.clickedPoint = CGPointMake(relativePoint.x, totalLineHeight);
+                info.clickedPoint = CGPointMake(relativePoint.x + textRect.origin.x, totalLineHeight);
                 
                 break;
             }
@@ -213,9 +240,6 @@
     
     NSRange end = [string rangeOfCharacterFromSet:cset options:0 range:NSMakeRange(index, string.length - index)];
     NSRange front = [string rangeOfCharacterFromSet:cset options:NSBackwardsSearch range:NSMakeRange(0, index)];
-    
-//    NSRange end = [string rangeOfString:@" " options:0 range:NSMakeRange(index, string.length - index)];
-//    NSRange front = [string rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, index)];
     
     if (front.location == NSNotFound) {
         front.location = 0;

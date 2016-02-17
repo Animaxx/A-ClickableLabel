@@ -18,6 +18,7 @@
 		691E83DA1C6B99D3001A16F5 /* Demo1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83D91C6B99D3001A16F5 /* Demo1Controller.m */; };
 		691E83E01C6D3DD3001A16F5 /* DemoDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83DF1C6D3DD3001A16F5 /* DemoDisplayView.m */; };
 		691E83FD1C6F93F2001A16F5 /* Demo2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E83FC1C6F93F2001A16F5 /* Demo2Controller.m */; };
+		691E840A1C740DC7001A16F5 /* Demo3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E84091C740DC7001A16F5 /* Demo3Controller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		691E83DF1C6D3DD3001A16F5 /* DemoDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoDisplayView.m; path = Demos/DemoDisplayView.m; sourceTree = "<group>"; };
 		691E83FB1C6F93F2001A16F5 /* Demo2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo2Controller.h; path = Demos/Demo2Controller.h; sourceTree = "<group>"; };
 		691E83FC1C6F93F2001A16F5 /* Demo2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo2Controller.m; path = Demos/Demo2Controller.m; sourceTree = "<group>"; };
+		691E84081C740DC7001A16F5 /* Demo3Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo3Controller.h; path = Demos/Demo3Controller.h; sourceTree = "<group>"; };
+		691E84091C740DC7001A16F5 /* Demo3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo3Controller.m; path = Demos/Demo3Controller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,7 @@
 				691E83D41C6B9977001A16F5 /* NavigationPages */,
 				691E83D31C6B9958001A16F5 /* Demo1 */,
 				691E83F71C6F9354001A16F5 /* Demo2 */,
+				691E84071C7408B7001A16F5 /* Demo3 */,
 				691E83A41C6929FB001A16F5 /* Supporting Files */,
 			);
 			path = A_ClickableLabel_Demo;
@@ -134,6 +138,15 @@
 				691E83FC1C6F93F2001A16F5 /* Demo2Controller.m */,
 			);
 			name = Demo2;
+			sourceTree = "<group>";
+		};
+		691E84071C7408B7001A16F5 /* Demo3 */ = {
+			isa = PBXGroup;
+			children = (
+				691E84081C740DC7001A16F5 /* Demo3Controller.h */,
+				691E84091C740DC7001A16F5 /* Demo3Controller.m */,
+			);
+			name = Demo3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				691E840A1C740DC7001A16F5 /* Demo3Controller.m in Sources */,
 				691E83CF1C6A9339001A16F5 /* A_AttributedStringBuilder.m in Sources */,
 				691E83D21C6B98AF001A16F5 /* RootTableController.m in Sources */,
 				691E83E01C6D3DD3001A16F5 /* DemoDisplayView.m in Sources */,

@@ -20,6 +20,12 @@
 - (A_AttributedStringBuilder *)setUnderline:(BOOL)underline;
 - (A_AttributedStringBuilder *)setShadow:(NSShadow *)shadow;
 - (A_AttributedStringBuilder *)setObliqueness:(CGFloat)obliqueness;
+- (A_AttributedStringBuilder *)setForegroundColor:(UIColor *)color;
+- (A_AttributedStringBuilder *)setBackgroundColor:(UIColor *)color;
+- (A_AttributedStringBuilder *)setStrokeColor:(UIColor *)color;
+- (A_AttributedStringBuilder *)setBaselineOffset:(CGFloat)offest;
+- (A_AttributedStringBuilder *)setUnderlineColor:(UIColor *)color;
+- (A_AttributedStringBuilder *)setExpansion:(CGFloat)offest;
 
 - (NSDictionary<NSString *, id> *)getStringAttributes;
 - (NSAttributedString *)getAttributedString:(NSString *)string;

@@ -23,8 +23,11 @@ typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_Clickabl
 + (A_ClickableElement *)create:(NSString *)words withAttributes:(NSDictionary<NSString *, id> *)attributes andClick:(aClickableLabelTouchEvent)touchEvent;
 + (A_ClickableElement *)create:(NSString *)words withBuilder:(A_AttributedStringBuilder *)builder andClick:(aClickableLabelTouchEvent)touchEvent;
 
-@end
++ (A_ClickableElement *)create:(NSString *)words withAttributes:(NSDictionary<NSString *, id> *)attributes;
++ (A_ClickableElement *)create:(NSString *)words withBuilder:(A_AttributedStringBuilder *)builder;
 
+
+@end
 
 @interface A_ClickedAdditionalInformation : NSObject
 
@@ -37,8 +40,11 @@ typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_Clickabl
 
 @interface A_ClickableLabel : UILabel
 
-- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElements:(NSArray<A_ClickableElement *> *)elements;
 - (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElements:(NSArray<A_ClickableElement *> *)elements;
+- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElements:(NSArray<A_ClickableElement *> *)elements;
+
+- (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElement:(A_ClickableElement *)element, ...;
+- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElement:(A_ClickableElement *)element, ...;
 
 - (void)renderLabel;
 
