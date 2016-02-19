@@ -39,7 +39,7 @@
     
     aClickableLabelTouchEvent touchEvent = ^(A_ClickableElement *element, A_ClickableLabel *sender, A_ClickedAdditionalInformation *info) {
         
-        self.explainArea.frame = CGRectMake(sender.frame.origin.x + info.clickedPoint.x - 30.0f, sender.frame.origin.y + info.clickedPoint.y, 140, 30);
+        self.explainArea.frame = CGRectMake(sender.frame.origin.x + info.clickedBaselinePoint.x - 30.0f, sender.frame.origin.y + info.clickedBaselinePoint.y, 140, 30);
         [noteLabel setText:[NSString stringWithFormat:@" Note:%@", info.selectedWord]];
         
     };

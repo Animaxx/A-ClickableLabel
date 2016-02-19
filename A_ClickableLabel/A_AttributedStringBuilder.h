@@ -12,7 +12,9 @@
 
 + (A_AttributedStringBuilder *)createWithSystemFontSize:(CGFloat)size;
 + (A_AttributedStringBuilder *)createWithFontName:(NSString *)name withSize:(CGFloat)size;
++ (A_AttributedStringBuilder *)createFromAttributes:(NSDictionary *)attributes;
 
+- (A_AttributedStringBuilder *)setAttributes:(NSDictionary *)attributes;
 - (A_AttributedStringBuilder *)setSystemFontSize:(CGFloat)size;
 - (A_AttributedStringBuilder *)setFontName:(NSString *)name withSize:(CGFloat)size;
 - (A_AttributedStringBuilder *)setKern:(CGFloat)kern;

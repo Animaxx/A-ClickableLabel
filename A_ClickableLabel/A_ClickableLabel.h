@@ -16,7 +16,7 @@ typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_Clickabl
 
 @interface A_ClickableElement : NSObject
 
-@property (strong, nonatomic) NSDictionary<NSString *, id> *stringAttributes;
+@property (strong, nonatomic) A_AttributedStringBuilder *styleBuilder;
 @property (strong, nonatomic) NSString *elementWords;
 @property (copy, nonatomic) aClickableLabelTouchEvent touchEvent;
 
@@ -34,6 +34,7 @@ typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_Clickabl
 @property (strong, nonatomic) NSString *selectedWord;
 @property (nonatomic) NSInteger locateNumberOfLine;
 @property (nonatomic) CGPoint clickedPoint;
+@property (nonatomic) CGPoint clickedBaselinePoint;
 @property (assign, nonatomic) CFIndex charIndexInSentence;
 
 @end
@@ -43,8 +44,8 @@ typedef void(^aClickableLabelTouchEvent)(A_ClickableElement *element, A_Clickabl
 - (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElements:(NSArray<A_ClickableElement *> *)elements;
 - (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElements:(NSArray<A_ClickableElement *> *)elements;
 
-- (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElement:(A_ClickableElement *)element, ...;
-- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElement:(A_ClickableElement *)element, ...;
+- (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElement:(A_ClickableElement *)element, ...NS_REQUIRES_NIL_TERMINATION;
+- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElement:(A_ClickableElement *)element, ...NS_REQUIRES_NIL_TERMINATION;
 
 - (void)renderLabel;
 

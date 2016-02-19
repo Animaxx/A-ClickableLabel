@@ -29,7 +29,16 @@
     [builder setFontName:name withSize:size];
     return builder;
 }
++ (A_AttributedStringBuilder *)createFromAttributes:(NSDictionary *)attributes {
+    A_AttributedStringBuilder *builder = [A_AttributedStringBuilder new];
+    [builder setAttributes:attributes];
+    return builder;
+}
 
+- (A_AttributedStringBuilder *)setAttributes:(NSDictionary *)attributes {
+    [attributed setValuesForKeysWithDictionary:attributes];
+    return self;
+}
 - (A_AttributedStringBuilder *)setSystemFontSize:(CGFloat)size {
     UIFont *font = [UIFont systemFontOfSize:size];
     [attributed setObject:font forKey:NSFontAttributeName];

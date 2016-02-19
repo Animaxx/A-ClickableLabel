@@ -17,17 +17,23 @@
 @implementation A_ClickableElement
 
 + (A_ClickableElement *)create:(NSString *)words withAttributes:(NSDictionary<NSString *, id> *)attributes andClick:(aClickableLabelTouchEvent)touchEvent {
-    
     A_ClickableElement *element = [[A_ClickableElement alloc] init];
     
     element.elementWords = words;
-    element.stringAttributes = attributes;
+    element.styleBuilder = [A_AttributedStringBuilder createFromAttributes:attributes];
     element.touchEvent = touchEvent;
     
     return element;
 }
 + (A_ClickableElement *)create:(NSString *)words withBuilder:(A_AttributedStringBuilder *)builder andClick:(aClickableLabelTouchEvent)touchEvent {
-    return [self create:words withAttributes:[builder getStringAttributes] andClick:touchEvent];
+    A_ClickableElement *element = [[A_ClickableElement alloc] init];
+    
+    element.elementWords = words;
+    element.styleBuilder = builder;
+    element.touchEvent = touchEvent;
+    
+    return element;
+
 }
 
 + (A_ClickableElement *)create:(NSString *)words withAttributes:(NSDictionary<NSString *, id> *)attributes {
@@ -62,7 +68,7 @@
     [self setSentence:sentence withAttributes:[builder getStringAttributes] andElements:elements];
 }
 
-- (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElement:(A_ClickableElement *)element, ... {
+- (void)setSentence:(NSString *)sentence withAttributes:(NSDictionary<NSString *, id> *)stringAttributes andElement:(A_ClickableElement *)element, ...NS_REQUIRES_NIL_TERMINATION{
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     va_list args;
@@ -74,7 +80,7 @@
     
     [self setSentence:sentence withAttributes:stringAttributes andElements:array];
 }
-- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElement:(A_ClickableElement *)element, ... {
+- (void)setSentence:(NSString *)sentence withBuilder:(A_AttributedStringBuilder *)builder andElement:(A_ClickableElement *)element, ...NS_REQUIRES_NIL_TERMINATION{
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     va_list args;
@@ -101,7 +107,7 @@
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:content];
     [string addAttributes:_attributes range:NSMakeRange(0, content.length)];
     for (A_ClickableElement *item in _elements) {
-        [string addAttributes:item.stringAttributes range:item.changableRange];
+        [string addAttributes:[item.styleBuilder getStringAttributes] range:item.changableRange];
     }
     
     [self setAttributedText:string];
@@ -109,7 +115,9 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
-    A_ClickedAdditionalInformation *info = [self characterIndexAtPoint:[touch locationInView:self]];
+    CGPoint touchPoint = [touch locationInView:self];
+    A_ClickedAdditionalInformation *info = [self characterIndexAtPoint:touchPoint];
+    info.clickedPoint = touchPoint;
     if (info.charIndexInSentence == NSNotFound) return;
     
     for (A_ClickableElement *item in _elements) {
@@ -218,7 +226,7 @@
                 idx = CTLineGetStringIndexForPosition(line, relativePoint);
                 
                 info.locateNumberOfLine = (NSInteger)lineIndex + 1;
-                info.clickedPoint = CGPointMake(relativePoint.x + textRect.origin.x, totalLineHeight);
+                info.clickedBaselinePoint = CGPointMake(relativePoint.x + textRect.origin.x, totalLineHeight);
                 
                 break;
             }
